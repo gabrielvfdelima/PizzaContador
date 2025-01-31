@@ -38,6 +38,9 @@
             const pizzasPlayer1 = parseInt(localStorage.getItem('player1Pizzas'), 10);
             const pizzasPlayer2 = parseInt(localStorage.getItem('player2Pizzas'), 10);
 
+            console.log(`Jogador 1 comeu: ${player1Eaten}, propôs: ${pizzasPlayer1}`);
+            console.log(`Jogador 2 comeu: ${player2Eaten}, propôs: ${pizzasPlayer2}`);
+
             let winner = null;
             let winnerReward = null;
             let loserReward = null;
@@ -47,25 +50,28 @@
                 winnerReward = `${localStorage.getItem('player1Recompensa')} <br> e também ${localStorage.getItem('player2Recompensa')}`;
                 localStorage.setItem('winner', winner);
                 localStorage.setItem('winnerReward', winnerReward);
+
                 window.location.href = 'vitoriaAmbos.html';
             } else if (player2Eaten >= pizzasPlayer2) {
                 winner = player2Name;
                 winnerReward = localStorage.getItem('player2Recompensa');
                 loserReward = localStorage.getItem('player1Recompensa');
-            } else if (player1Eaten >= pizzasPlayer1) {
-                winner = player1Name;
-                winnerReward = localStorage.getItem('player1Recompensa');
-                loserReward = localStorage.getItem('player2Recompensa');
-            }
-
-            if (winner && !winner.includes('e')) {
                 localStorage.setItem('winner', winner);
                 localStorage.setItem('winnerReward', winnerReward);
                 localStorage.setItem('loserReward', loserReward);
                 window.location.href = 'vitoria.html';
-            } else if (!winner) {
-                alert('Nenhum jogador cumpriu o desafio.');
+            } else if (player1Eaten >= pizzasPlayer1) {
+                winner = player1Name;
+                winnerReward = localStorage.getItem('player1Recompensa');
+                loserReward = localStorage.getItem('player2Recompensa');
+                localStorage.setItem('winner', winner);
+                localStorage.setItem('winnerReward', winnerReward);
+                localStorage.setItem('loserReward', loserReward);
+                window.location.href = 'vitoria.html';
             }
+
+            console.log(`Winner: ${winner}`);
+
         }
     </script>
 </body>
