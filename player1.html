@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Contador Pizza</title>
+    <link rel="icon" href="pizza.png" type="image/x-icon">
+</head>
+<body>
+    <h1>Bem vindo jogador 1 !</h1>
+    <form onsubmit="savePlayer1Data(event)">
+        <label for="player1">Digite seu nome:</label>
+        <input type="text" name="player1" id="player1">
+        <label for="qtdPizza">Digite quantas pizzas você irá comer</label>
+        <input type="number" name="qtdPizza" id="qtdPizza">
+        <label for="recompensa">Digite a recompensa que você quer receber se completar o que propôs</label>
+        <textarea name="recompensa" id="recompensa1" rows="4" cols="50"></textarea>
+        <button type="submit">Próximo jogador</button>
+    </form>
+
+    <script>
+        function savePlayer1Data(event) {
+            event.preventDefault();
+            const player1Name = document.getElementById('player1').value;
+            const player1Pizzas = document.getElementById('qtdPizza').value;
+            const player1Recompensa = document.getElementById('recompensa1').value;
+
+            localStorage.setItem('player1Name', player1Name);
+            localStorage.setItem('player1Pizzas', player1Pizzas);
+            localStorage.setItem('player1Recompensa', player1Recompensa);
+            window.location.href = 'player2.html';
+        }
+    </script>
+</body>
+</html>

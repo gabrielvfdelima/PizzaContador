@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Vitória</title>
+    <link rel="icon" href="pizza.png" type="image/x-icon">
+</head>
+<body>
+    <h1>Resultado da Competição</h1>
+    <div class="result-container">
+        <div class="winner">
+            <img src="coroa.png" class="coroa" alt="Coroa">
+            <h2><span id="winner-name"></span></h2>
+            <p>Recompensa: <span id="winner-reward"></span></p>
+        </div>
+        <div class="loser">
+            <h2>Recompensa do Perdedor</h2>
+            <p><span id="loser-reward"></span></p>
+        </div>
+    </div>
+
+    <script>
+        const winnerName = localStorage.getItem('winner');
+        const winnerReward = localStorage.getItem('winnerReward');
+        const loserReward = localStorage.getItem('loserReward');
+        const player1Recompensa = localStorage.getItem('player1Recompensa');
+        const player2Recompensa = localStorage.getItem('player2Recompensa');
+
+
+        // Exibir os resultados
+        document.getElementById('winner-name').textContent = winnerName;
+        document.getElementById('winner-reward').textContent = winnerReward;
+        document.getElementById('loser-reward').textContent = loserReward;
+    </script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="verificavitoria.css">
+    <title>Verificar Vitória</title>
+    <link rel="icon" href="pizza.png" type="image/x-icon">
+</head>
+<body>
+    <h1>Verificar Vitória</h1>
+    <div class="player-info">
+        <h2>Jogador 1: <span id="player1-name"></span></h2>
+        <p>Quantidade de pizzas: <span id="player1-pizzas"></span></p>
+        <label for="player1-eaten">Quantas pizzas você comeu?</label>
+        <input type="number" id="player1-eaten" name="player1-eaten">
+    </div>
+    <div class="player-info">
+        <h2>Jogador 2: <span id="player2-name"></span></h2>
+        <p>Quantidade de pizzas: <span id="player2-pizzas"></span></p>
+        <label for="player2-eaten">Quantas pizzas você comeu?</label>
+        <input type="number" id="player2-eaten" name="player2-eaten">
+    </div>
+    <button type="button" onclick="verificarVitoria()">Verificar Vitória</button>
+
+    <script>
+        document.getElementById('player1-name').textContent = localStorage.getItem('player1Name');
+        document.getElementById('player1-pizzas').textContent = localStorage.getItem('player1Pizzas');
+        document.getElementById('player2-name').textContent = localStorage.getItem('player2Name');
+        document.getElementById('player2-pizzas').textContent = localStorage.getItem('player2Pizzas');
+
+        function verificarVitoria() {
+            const player1Eaten = parseInt(document.getElementById('player1-eaten').value, 10);
+            const player2Eaten = parseInt(document.getElementById('player2-eaten').value, 10);
+
+            const player1Name = localStorage.getItem('player1Name');
+            const player2Name = localStorage.getItem('player2Name');
+
+            const pizzasPlayer1 = parseInt(localStorage.getItem('player1Pizzas'), 10);
+            const pizzasPlayer2 = parseInt(localStorage.getItem('player2Pizzas'), 10);
+
+            let winner = null;
+            let winnerReward = null;
+            let loserReward = null;
+
+            if (player1Eaten >= pizzasPlayer1 && player2Eaten >= pizzasPlayer2) {
+                winner = `${player1Name} e ${player2Name}`;
+                winnerReward = `${localStorage.getItem('player1Recompensa')} <br> e também ${localStorage.getItem('player2Recompensa')}`;
+                localStorage.setItem('winner', winner);
+                localStorage.setItem('winnerReward', winnerReward);
+                window.location.href = 'vitoriaAmbos.html';
+            } else if (player2Eaten > player1Eaten) {
+               if(player2Eaten >= pizzasPlayer2){
+                winner = player2Name;
+                winnerReward = localStorage.getItem('player2Recompensa');
+                loserReward = localStorage.getItem('player1Recompensa');
+               }
+               else{
+                winenr = player1Name
+                winnerReward = localStorage.getItem('player1Recompensa');
+                loserReward = localStorage.getItem('player2Recompensa');
+            }
+            } else if (player1Eaten > player2Eaten) {
+                if(player1Eaten >= pizzasPlayer1){
+                winner = player1Name;
+                winnerReward = localStorage.getItem('player1Recompensa');
+                loserReward = localStorage.getItem('player2Recompensa');
+               }
+               else{
+                winenr = player2Name
+                winnerReward = localStorage.getItem('player2Recompensa');
+                loserReward = localStorage.getItem('player1Recompensa');
+               }
+            }
+
+            if (winner && !winner.includes('e')) {
+                localStorage.setItem('winner', winner);
+                localStorage.setItem('winnerReward', winnerReward);
+                localStorage.setItem('loserReward', loserReward);
+                window.location.href = 'vitoria.html';
+            } else if (!winner) {
+                alert('Nenhum jogador cumpriu o desafio.');
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Contador Pizza</title>
+    <link rel="icon" href="pizza.png" type="image/x-icon">
+</head>
+<body>
+    <h1>Bem vindo jogador 2 !</h1>
+    <form onsubmit="savePlayer2Data(event)">
+        <label for="player2">Digite seu nome:</label>
+        <input type="text" name="player2" id="player2">
+        <label for="qtdPizza2">Digite quantas pizzas você irá comer</label>
+        <input type="number" name="qtdPizza2" id="qtdPizza2">
+        <label for="recompensa2">Digite a recompensa que você quer receber se completar o que propôs</label>
+        <textarea name="recompensa2" id="recompensa2" rows="4" cols="50"></textarea>
+        <button type="submit">Próximo jogador</button>
+    </form>
+
+    <script>
+        function savePlayer2Data(event) {
+            event.preventDefault();
+            const player2Name = document.getElementById('player2').value;
+            const player2Pizzas = document.getElementById('qtdPizza2').value;
+            const player2Recompensa = document.getElementById('recompensa2').value;
+
+            localStorage.setItem('player2Name', player2Name);
+            localStorage.setItem('player2Pizzas', player2Pizzas);
+            localStorage.setItem('player2Recompensa', player2Recompensa);
+
+            window.location.href = 'verificarVitoria.html';
+        }
+    </script>
+</body>
+</html>
