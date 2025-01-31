@@ -28,7 +28,6 @@
         document.getElementById('player1-pizzas').textContent = localStorage.getItem('player1Pizzas');
         document.getElementById('player2-name').textContent = localStorage.getItem('player2Name');
         document.getElementById('player2-pizzas').textContent = localStorage.getItem('player2Pizzas');
-
         function verificarVitoria() {
             const player1Eaten = parseInt(document.getElementById('player1-eaten').value, 10);
             const player2Eaten = parseInt(document.getElementById('player2-eaten').value, 10);
@@ -49,28 +48,14 @@
                 localStorage.setItem('winner', winner);
                 localStorage.setItem('winnerReward', winnerReward);
                 window.location.href = 'vitoriaAmbos.html';
-            } else if (player2Eaten > player1Eaten) {
-               if(player2Eaten >= pizzasPlayer2){
+            } else if (player2Eaten >= pizzasPlayer2) {
                 winner = player2Name;
                 winnerReward = localStorage.getItem('player2Recompensa');
                 loserReward = localStorage.getItem('player1Recompensa');
-               }
-               else{
-                winenr = player1Name
-                winnerReward = localStorage.getItem('player1Recompensa');
-                loserReward = localStorage.getItem('player2Recompensa');
-            }
-            } else if (player1Eaten > player2Eaten) {
-                if(player1Eaten >= pizzasPlayer1){
+            } else if (player1Eaten >= pizzasPlayer1) {
                 winner = player1Name;
                 winnerReward = localStorage.getItem('player1Recompensa');
                 loserReward = localStorage.getItem('player2Recompensa');
-               }
-               else{
-                winenr = player2Name
-                winnerReward = localStorage.getItem('player2Recompensa');
-                loserReward = localStorage.getItem('player1Recompensa');
-               }
             }
 
             if (winner && !winner.includes('e')) {
